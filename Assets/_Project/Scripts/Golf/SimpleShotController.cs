@@ -122,7 +122,7 @@ namespace ClubNeko.Golf
         private void HandleInput()
         {
             // エイム開始/終了
-            if (Input.GetMouseButtonDown(0))
+            if (UnityEngine.Input.GetMouseButtonDown(0))
             {
                 StartAiming();
             }
@@ -130,34 +130,34 @@ namespace ClubNeko.Golf
             // パワー調整
             if (isAiming)
             {
-                if (Input.GetKey(KeyCode.Space))
+                if (UnityEngine.Input.GetKey(KeyCode.Space))
                 {
                     ChargePower();
                 }
-                else if (Input.GetKeyUp(KeyCode.Space) && isChargingPower)
+                else if (UnityEngine.Input.GetKeyUp(KeyCode.Space) && isChargingPower)
                 {
                     Shoot();
                 }
                 
                 // 角度調整
-                if (Input.GetKey(KeyCode.Q))
+                if (UnityEngine.Input.GetKey(KeyCode.Q))
                 {
                     currentAngle = Mathf.Clamp(currentAngle - 30f * Time.deltaTime, angleMin, angleMax);
                 }
-                if (Input.GetKey(KeyCode.E))
+                if (UnityEngine.Input.GetKey(KeyCode.E))
                 {
                     currentAngle = Mathf.Clamp(currentAngle + 30f * Time.deltaTime, angleMin, angleMax);
                 }
             }
             
             // キャンセル
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
             {
                 CancelAiming();
             }
             
             // リセット
-            if (Input.GetKeyDown(KeyCode.R))
+            if (UnityEngine.Input.GetKeyDown(KeyCode.R))
             {
                 ResetBallPosition();
             }
@@ -195,7 +195,7 @@ namespace ClubNeko.Golf
             if (!isAiming) return;
             
             // マウス位置から方向を計算
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = mainCamera.ScreenPointToRay(UnityEngine.Input.mousePosition);
             RaycastHit hit;
             
             if (Physics.Raycast(ray, out hit, 100f, LayerMask.GetMask("Default")))
